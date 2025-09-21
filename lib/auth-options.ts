@@ -4,6 +4,12 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import { comparePassword } from "@/lib/auth";
 
+interface ExtendedUser {
+  id: string;
+  email: string;
+  role: string;
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -50,8 +56,8 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
-      if (user) {
-        token.role = (user as any).role;
+      if (user && 'role' in user) {
+        token.role = (user as ExtendedUser).role;
       }
       return token;
     },

@@ -30,10 +30,7 @@ export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "theme",
-  attribute = "class",
-  defaultValue = "light",
   enableSystem = true,
-  disableTransitionOnChange = false,
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
