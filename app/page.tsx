@@ -5,12 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import AnimatedBackground from "../components/animated-background";
+import Navbar from "../components/navbar";
 import HeroSection from "../components/hero-section";
 import ServicesSection from "../components/services-section";
 import AboutSection from "../components/about-section";
 import ContactSection from "../components/contact-section";
-import CursorFollower from "../components/cursor-follower";
-import FloatingElements from "../components/floating-elements";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -20,12 +19,12 @@ export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Ana container fade-in animasyonu
+    // Ana container fade-in animasyonu (daha sakin)
     if (containerRef.current) {
       gsap.fromTo(
         containerRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
+        { opacity: 1, duration: 0.8, ease: "power2.out" }
       );
     }
 
@@ -38,13 +37,12 @@ export default function HomePage() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen bg-gray-50 overflow-hidden"
+      className="relative min-h-screen bg-white overflow-hidden"
     >
-      {/* Interactive Elements */}
-      <CursorFollower />
-      <FloatingElements />
-
-      {/* Animated Background */}
+      {/* Navigation */}
+      <Navbar />
+      
+      {/* Simplified Background */}
       <AnimatedBackground />
 
       {/* Main Content */}
